@@ -77,6 +77,12 @@ def delete(node, value):
             return node.right
         elif node.right is None:
             return node.left
+
+        max_smaller_node = node.left
+        while max_smaller_node.right:
+            max_smaller_node = max_smaller_node.right # move
+        node.data = max_smaller_node.data
+        node.left = delete(node.left, max_smaller_node.data)
     return node
 
 if __name__ == "__main__":
